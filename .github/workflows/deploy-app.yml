@@ -36,7 +36,7 @@ jobs:
       - name: Deploy Function App
         uses: Azure/functions-action@v1
         with:
-          app-name: 'simple-func-iac-ba'
+          app-name: 'jbi-simple-func-iac-ba'
           slot-name: 'production'
           package: './src'
           scm-do-build-during-deployment: true
