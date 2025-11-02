@@ -30,27 +30,6 @@ jobs:
             --location westeurope \
             --output none
 
-      - name: Test Azure CLI Connection
-        run: |
-          az account show --output table
-          az group list --output table
-
-      - name: Test Deployment (What-If)
-        uses: azure/cli@v2
-        with:
-          azcliversion: 2.72.0
-          inlineScript: |
-            echo "=== Testing deployment to identify any issues ==="
-            az deployment group what-if \
-              --resource-group rg-simple-func-iac \
-              --template-file infra/main.bicep \
-              --parameters \
-                functionAppName='simple-func-iac-ba' \
-                storageAccountName='sfiacba' \
-                appInsightsName='simple-func-iac-ba-insights' \
-                hostingPlanName='simple-func-iac-ba-plan' \
-              --verbose
-
       - name: Deploy Infrastructure with Azure CLI (Fixed Version)
         uses: azure/cli@v2
         with:
@@ -61,10 +40,10 @@ jobs:
               --resource-group rg-simple-func-iac \
               --template-file infra/main.bicep \
               --parameters \
-                functionAppName='simple-func-iac-ba' \
-                storageAccountName='sfiacba' \
-                appInsightsName='simple-func-iac-ba-insights' \
-                hostingPlanName='simple-func-iac-ba-plan' \
+                functionAppName='jbi-simple-func-iac-ba' \
+                storageAccountName='jbisfiacba' \
+                appInsightsName='jbi-simple-func-iac-ba-insights' \
+                hostingPlanName='jbi-simple-func-iac-ba-plan' \
               --name infrastructure-deployment \
               --mode Incremental \
               --verbose
